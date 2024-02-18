@@ -70,14 +70,14 @@ public class RoutingMiddleware
         int randomNumber = random.Next(0, 101);
         var company = new Company
         {
-            Name = "ASP_THE_BEST",
-            Industry = "ASP_COMPANY",
-            Location = "Mohyla"
+            Name = "Company X",
+            Industry = "Financial",
+            Location = "Ukraine"
         };
         if (path == "/company")
-            await context.Response.WriteAsync($"Info about my class:\n{company.GetAllProperties()}");
+            await context.Response.WriteAsync($"Info about my company:\n{company.GetAllProperties()}");
         else if (path == "/random"){ 
-            await context.Response.WriteAsync($"Random Number: {randomNumber}");
+            await context.Response.WriteAsync($"Random num: {randomNumber}");
         }
         else
         {
