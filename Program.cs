@@ -1,89 +1,20 @@
-using asp_lrs;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-app.UseMiddleware<ErrorHandlingMiddleware>();
-app.UseMiddleware<AuthenticationMiddleware>();
-app.UseMiddleware<RoutingMiddleware>();
-app.Run();
-
-public class AuthenticationMiddleware
+namespace lr3_test
 {
-    private readonly RequestDelegate _next;
+	public class Program
+	{
+		public static void Main(string[] args)
+		{
+			CreateHostBuilder(args).Build().Run();
+		}
 
-    public AuthenticationMiddleware(RequestDelegate next)
-    {
-        _next = next;
-    }
-
-    public async Task InvokeAsync(HttpContext context)
-    {
-        var token = context.Request.Query["token"];
-
-        if (string.IsNullOrWhiteSpace(token))
-        {
-            context.Response.StatusCode = 403;
-        }
-        else
-        {
-            await _next.Invoke(context);
-        }
-    }
+		public static IHostBuilder CreateHostBuilder(string[] args) =>
+			Host.CreateDefaultBuilder(args)
+				.ConfigureWebHostDefaults(webBuilder =>
+				{
+					webBuilder.UseStartup<Startup>();
+				});
+	}
 }
-public class ErrorHandlingMiddleware
-{
-    private readonly RequestDelegate _next;
-
-    public ErrorHandlingMiddleware(RequestDelegate next)
-    {
-        _next = next;
-    }
-
-    public async Task InvokeAsync(HttpContext context)
-    {
-        await _next.Invoke(context);
-
-        if (context.Response.StatusCode == 403)
-        {
-            await context.Response.WriteAsync("Access Denied");
-        }
-        else if (context.Response.StatusCode == 404)
-        {
-            await context.Response.WriteAsync("Not Found");
-        }
-    }
-}
-public class RoutingMiddleware
-{
-    private readonly RequestDelegate _next;
-
-    public RoutingMiddleware(RequestDelegate next)
-    {
-        _next = next;
-    }
-
-    public async Task InvokeAsync(HttpContext context)
-    {
-        string path = context.Request.Path;
-        var response = context.Response;
-        var random = new Random();
-        int randomNumber = random.Next(0, 101);
-        var company = new Company
-        {
-            Name = "Company X",
-            Industry = "Financial",
-            Location = "Ukraine"
-        };
-        if (path == "/company")
-            await context.Response.WriteAsync($"Info about my company:\n{company.GetAllProperties()}");
-        else if (path == "/random"){ 
-            await context.Response.WriteAsync($"Random num: {randomNumber}");
-        }
-        else
-        {
-            context.Response.StatusCode = 404;
-        }
-    }
-}
-
-
