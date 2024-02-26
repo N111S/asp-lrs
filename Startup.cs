@@ -1,40 +1,32 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
-namespace lr3_test
+﻿namespace ConfigurationApp
 {
-	public class Startup
-	{
-		public void ConfigureServices(IServiceCollection services)
-		{
-			services.AddControllers();
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
 
-			services.AddTransient<CalcService>();
-			services.AddTransient<ITimeOfDayService, TimeOfDayService>();
+        public IConfiguration Configuration { get; }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddControllersWithViews();
 		}
 
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-		{
-			if (env.IsDevelopment())
-			{
-				app.UseDeveloperExceptionPage();
-			}
-			else
-			{
-				app.UseExceptionHandler("/Error");
-				app.UseHsts();
-			}
+        public void Configure(IApplicationBuilder app)
+        {
 
-			app.UseHttpsRedirection();
 			app.UseRouting();
-			app.UseAuthorization();
-
 			app.UseEndpoints(endpoints =>
-			{
-				endpoints.MapControllers();
+            {
+				endpoints.MapControllerRoute(
+	                name: "library",
+	                pattern: "Library/{action=Index}/{id?}",
+	                defaults: new { controller = "Library" });
+
 			});
+
 		}
-	}
+    }
 }
