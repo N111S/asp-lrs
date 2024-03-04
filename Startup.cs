@@ -1,32 +1,44 @@
-﻿namespace ConfigurationApp
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Nelli_lr5.Middlewares;
+
+namespace Nelli_lr5
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-		}
+        }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
-			app.UseRouting();
-			app.UseEndpoints(endpoints =>
+            if (env.IsDevelopment())
             {
-				endpoints.MapControllerRoute(
-	                name: "library",
-	                pattern: "Library/{action=Index}/{id?}",
-	                defaults: new { controller = "Library" });
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
+            }
 
-			});
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
-		}
+            app.UseRouting();
+
+            app.UseAuthorization();
+            string logFilePath = Path.Combine(env.ContentRootPath, "error.log");
+            app.UseErrorLoggingMiddleware(logFilePath);
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Data}/{action=Index}/{id?}");
+            });
+        }
     }
 }

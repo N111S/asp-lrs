@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "T9cn12dEnxQqhsWuohEPjr/La+q/YfgdOwoTm5mIpvU=",
+  "Source": "Nelli_lr5",
+  "BasePath": "_content/Nelli_lr5",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Nelli_lr5\\wwwroot",
+      "Source": "Nelli_lr5",
+      "ContentRoot": "C:\\Users\\User\\source\\repos\\Nelli_lr5\\Nelli_lr5\\wwwroot\\",
+      "BasePath": "_content/Nelli_lr5",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\User\\source\\repos\\Nelli_lr5\\Nelli_lr5\\wwwroot\\css\\styles.css",
+      "SourceId": "Nelli_lr5",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\source\\repos\\Nelli_lr5\\Nelli_lr5\\wwwroot\\",
+      "BasePath": "_content/Nelli_lr5",
+      "RelativePath": "css/styles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\styles.css"
+    }
+  ]
+}
