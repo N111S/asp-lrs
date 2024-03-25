@@ -1,0 +1,37 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f7f7f7; /* Зміна фону сторінки */
+}
+
+.list-container, .table-container {
+    margin-top: 20px;
+}
+
+.list-view li {
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+
+.table-view {
+    margin: 0 auto; /* Центрувати таблицю по горизонталі */
+    border-collapse: collapse; /* Згортати рамки таблиці */
+    width: 80%; /* Змінити ширину таблиці */
+}
+
+    .table-view th, .table-view td {
+        padding: 8px;
+        text-align: center;
+    }
+
+    .table-view th {
+        background-color: #f2f2f2;
+    }
+
+.odd-row {
+    background-color: #e6e6e6;
+}
+
+.even-row {
+    background-color: #dcdcdc; /* Темніший колір для кожної другої строки */
+}

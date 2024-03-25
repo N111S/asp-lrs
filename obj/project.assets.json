@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\source\\repos\\Nelli_lr7\\Nelli_lr7.csproj",
-      "projectName": "Nelli_lr7",
-      "projectPath": "C:\\Users\\User\\source\\repos\\Nelli_lr7\\Nelli_lr7.csproj",
+      "projectUniqueName": "C:\\Users\\User\\source\\repos\\Nelli_lr8\\Nelli_lr8.csproj",
+      "projectName": "Nelli_lr8",
+      "projectPath": "C:\\Users\\User\\source\\repos\\Nelli_lr8\\Nelli_lr8.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\source\\repos\\Nelli_lr7\\obj\\",
+      "outputPath": "C:\\Users\\User\\source\\repos\\Nelli_lr8\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

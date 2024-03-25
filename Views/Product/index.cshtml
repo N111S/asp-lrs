@@ -1,0 +1,47 @@
+﻿@model List<ProductViewModel>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product List</title>
+    <link rel="stylesheet" type="text/css" href="/css/product-list.css">
+</head>
+<body>
+    <h2>Product List</h2>
+
+    <div class="list-container">
+        <h3>List View:</h3>
+        <ul class="list-view">
+            @foreach (var product in Model)
+            {
+                <li>@product.ID. @product.Name - $@product.Price (@product.CreatedDate)</li>
+            }
+        </ul>
+    </div>
+
+    <div class="table-container">
+        <h3>Table View:</h3>
+        <table class="table-view" border="1">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Created Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td>@product.ID</td>
+                        <td>@product.Name</td>
+                        <td>$@product.Price</td>
+                        <td>@product.CreatedDate.ToShortDateString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
